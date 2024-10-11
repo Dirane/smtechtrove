@@ -4,10 +4,32 @@ import { useState } from 'react';
 export default function Signup() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setMessage('');
         console.log('Signup:', { username, password });
+
+        try {
+            const response = await fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setMessage('Signup successful! Please log in.');
+            } else {
+                setMessage(result.error);
+            }
+        } catch (error) {
+            setMessage('Something went wront. Please try again.');
+        }
     };
 
     return (
@@ -32,6 +54,7 @@ export default function Signup() {
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
+            {message && <p>{message}</p>}
         </div>
     );
 }

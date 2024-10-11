@@ -4,9 +4,30 @@ import { useState } from 'react';
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setMessage('');
+        try {
+            const response = await fetch('/api/lgoin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setMessage('Login successful!');
+            } else {
+                setMessage(result.error);
+            }
+        } catch (error) {
+            setMessage('Something went wrong. Please try again.');
+        }
         console.log('Login:', { username, password });
     };
 
@@ -32,6 +53,7 @@ export default function Login() {
                 </div>
                 <button type="submit">Log In</button>
             </form>
+            {message && <p>{message}</p>}
         </div>
     );
 }
