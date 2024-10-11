@@ -1,4 +1,5 @@
-import { useState } from "react";
+'use client'
+import { useState } from 'react';
 
 export default function Signup() {
     const [username, setUsername] = useState('');
@@ -6,7 +7,6 @@ export default function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Sign up logic
         console.log('Signup:', { username, password });
     };
 
@@ -15,15 +15,23 @@ export default function Signup() {
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Username</label>
-                    <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
                 </div>
                 <div>
                     <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
         </div>
-    )
+    );
 }
