@@ -1,1 +1,48 @@
-{"users":[{"id":1,"username":"dirane","password":"dirane123"},{"id":2,"username":"test","password":"test"}]}
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "exampleUser",
+            "password": "examplePassword"
+        },
+        {
+            "id": 1,
+            "username": "exampleUser",
+            "password": "examplePassword"
+        },
+        {
+            "id": 1,
+            "username": "exampleUser",
+            "password": "examplePassword"
+        }
+    ],
+    "events": [
+        {
+            "id": 1,
+            "title": "React Workshop 2",
+            "description": "Learn the basics of React.",
+            "venue": "Online",
+            "duration": "2 hours",
+            "type": "free",
+            "rsvp": []
+        },
+        {
+            "id": 2,
+            "title": "React Workshop 3",
+            "description": "Learn the basics of React.",
+            "venue": "Online",
+            "duration": "2 hours",
+            "type": "paid",
+            "rsvp": []
+        },
+        {
+            "id": 3,
+            "title": "React Workshop",
+            "description": "Learn the basics of React.",
+            "venue": "Online",
+            "duration": "2 hours",
+            "type": "paid",
+            "rsvp": []
+        }
+    ]
+}

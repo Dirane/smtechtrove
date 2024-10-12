@@ -1,19 +1,27 @@
-// app/events/[id]/page.tsx
-
+'use client'
 interface EventDetailProps {
     params: {
         id: string;
     };
 }
 
-export default function EventDetail({ params }: EventDetailProps) {
+export default async function EventDetail({ params }: EventDetailProps) {
     const { id } = params;
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/events/${id}`);
+    const event = await response.json();
+
+    if (!event) {
+        return <p>Event not found</p>;
+    }
 
     return (
         <div>
-            <h1>Event Details</h1>
-            <p>Event ID: {id}</p>
-            {/* Event details will be fetched using this ID in a later phase */}
+            <h1>{event.title}</h1>
+            <p>{event.description}</p>
+            <p>Venue: {event.venue}</p>
+            <p>Duration: {event.duration}</p>
+            <p>Type: {event.type}</p>
         </div>
     );
 }
