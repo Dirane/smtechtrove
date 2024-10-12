@@ -10,7 +10,7 @@ export default function Login() {
         e.preventDefault();
         setMessage('');
         try {
-            const response = await fetch('/api/lgoin', {
+            const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,9 +26,9 @@ export default function Login() {
                 setMessage(result.error);
             }
         } catch (error) {
-            setMessage('Something went wrong. Please try again.');
+            console.error('Error during login:', error);
+            setMessage('A network error occurred. Please try again.');
         }
-        console.log('Login:', { username, password });
     };
 
     return (
